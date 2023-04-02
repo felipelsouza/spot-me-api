@@ -20,6 +20,7 @@
 
 import Route from '@ioc:Adonis/Core/Route';
 
-Route.get('/health-check', async () => {
-  return { status: 'OK' };
-});
+Route.group(() => {
+  require('./routes/health-check');
+  require('./routes/user');
+}).prefix('/api/v1');
