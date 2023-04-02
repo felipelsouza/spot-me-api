@@ -28,8 +28,7 @@ test.group('Create User', (group) => {
   test('It should return 409 when email is already in use', async ({ client, assert }) => {
     const { email } = await UserFactory.create();
 
-    const userPayload = await UserFactory.make();
-    userPayload.email = email;
+    const userPayload = await UserFactory.merge({ email }).make();
 
     const response = await client.post('api/v1/users').json(userPayload);
 
@@ -43,12 +42,9 @@ test.group('Create User', (group) => {
   }) => {
     const { externalId, externalSource } = await UserFactory.create();
 
-    const validUserPayload = await UserFactory.make();
-    validUserPayload.externalId = externalId;
+    const validUserPayload = await UserFactory.merge({ externalId }).make();
 
-    const invalidUserPayload = await UserFactory.make();
-    invalidUserPayload.externalId = externalId;
-    invalidUserPayload.externalSource = externalSource;
+    const invalidUserPayload = await UserFactory.merge({ externalId, externalSource }).make();
 
     const validResponse = await client.post('api/v1/users').json(validUserPayload);
     const invalidResponse = await client.post('api/v1/users').json(invalidUserPayload);
@@ -59,8 +55,7 @@ test.group('Create User', (group) => {
   });
 
   test('It should return 422 when email is not valid', async ({ client, assert }) => {
-    const userPayload = await UserFactory.make();
-    userPayload.email = 'invalid-email';
+    const userPayload = await UserFactory.merge({ email: 'invalid-email' }).make();
 
     const response = await client.post('api/v1/users').json(userPayload);
 
