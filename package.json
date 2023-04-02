@@ -7,6 +7,10 @@
     "build": "node ace build --production",
     "start": "node server.js",
     "test": "node ace test",
+    "test:unit": "node ace test unit",
+    "test:unit:watch": "node ace test unit --watch",
+    "test:functional": "node ace test functional",
+    "test:functional:watch": "node ace test functional --watch",
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write ."
   },
@@ -60,7 +64,11 @@
   },
   "dependencies": {
     "@adonisjs/core": "^5.9.0",
+    "@adonisjs/i18n": "^1.5.6",
+    "@adonisjs/lucid": "^18.3.0",
     "@adonisjs/repl": "^3.1.11",
+    "luxon": "^3.3.0",
+    "pg": "^8.10.0",
     "proxy-addr": "^2.0.7",
     "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.21"
