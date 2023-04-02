@@ -1,8 +1,8 @@
 import { test } from '@japa/runner';
 
-test('Check application availability', async ({ client }) => {
-  const response = await client.get('/health-check');
+test('Check database availability', async ({ client }) => {
+  const response = await client.get('api/v1/health-check');
 
   response.assertStatus(200);
-  response.assertBodyContains({ status: 'OK' });
+  response.assertBodyContains({ message: 'Connection is healthy' });
 });
