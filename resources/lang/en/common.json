@@ -1,0 +1,5 @@
+{
+  "requiredField": "The field {field} is mandatory",
+  "invalidFieldFormat": "Invalid {field} field format",
+  "invalidData": "Invalid data"
+}
