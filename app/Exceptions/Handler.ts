@@ -31,6 +31,13 @@ export default class ExceptionHandler extends HttpExceptionHandler {
       });
     }
 
+    if (error.code === 'E_ROW_NOT_FOUND') {
+      return ctx.response.status(error.status).send({
+        code: 'NOT_FOUND__RESOURCE_NOT_FOUND',
+        message: ctx.i18n.formatMessage('common.resourceNotFound')
+      });
+    }
+
     return super.handle(error, ctx);
   }
 }
