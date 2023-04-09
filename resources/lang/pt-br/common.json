@@ -1,5 +1,6 @@
 {
   "requiredField": "O campo {field} é obrigatório",
   "invalidFieldFormat": "Formato do campo {field} inválido",
-  "invalidData": "Dados inválidos"
+  "invalidData": "Dados inválidos",
+  "resourceNotFound": "Recurso nâo encontrado"
 }
