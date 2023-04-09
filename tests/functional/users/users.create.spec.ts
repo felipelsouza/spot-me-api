@@ -14,15 +14,7 @@ test.group('Create User', (group) => {
     const response = await client.post('api/v1/users').json(userPayload);
 
     response.assertStatus(201);
-    assert.onlyProperties(response.body(), [
-      'id',
-      'externalId',
-      'externalSource',
-      'email',
-      'name',
-      'createdAt',
-      'updatedAt'
-    ]);
+    assert.onlyProperties(response.body(), ['id', 'externalId', 'externalSource', 'email', 'name']);
   });
 
   test('It should return 409 when email is already in use', async ({ client, assert }) => {
