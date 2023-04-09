@@ -1,4 +1,5 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema';
+import MigrationsHelper from 'Database/utils/MigrationsHelper';
 
 export default class extends BaseSchema {
   protected tableName = 'users';
@@ -13,13 +14,12 @@ export default class extends BaseSchema {
       table.string('name', 255).notNullable();
       table.string('email', 255).notNullable().unique();
 
-      table.boolean('is_deleted').notNullable().defaultTo(false);
-      table.timestamp('deleted_at', { useTz: true });
+      MigrationsHelper.createAuditoryFields(table);
 
-      table.timestamp('created_at', { useTz: true });
-      table.timestamp('updated_at', { useTz: true });
+      table.index(['external_id', 'external_source'], 'idx_users_external_id_external_source');
 
       table.unique(['external_id', 'external_source'], {
+        indexName: 'un_users_external_id_external_source',
         predicate: this.knex().whereRaw('is_deleted = false')
       });
     });
