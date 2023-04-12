@@ -16,7 +16,7 @@ export default class UserService extends BaseService<User> {
     const { rows: hasUser } = await Database.rawQuery(
       `
         SELECT
-          1
+          TRUE
         FROM
           users
         WHERE
@@ -24,13 +24,14 @@ export default class UserService extends BaseService<User> {
           AND is_deleted = false
         UNION ALL
         SELECT
-          1
+          TRUE
         FROM
           users
         WHERE
           external_id = :externalId
           AND external_source = :externalSource
           AND is_deleted = false
+        LIMIT 1
       `,
       { email, externalId, externalSource }
     );
