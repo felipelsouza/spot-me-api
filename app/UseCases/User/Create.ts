@@ -1,13 +1,9 @@
 import { LucidRow } from '@ioc:Adonis/Lucid/Orm';
 import ClientException from 'App/Exceptions/ClientException';
+import UserInterface from 'App/Interfaces/User';
 import UserService from 'App/Services/UserService';
 
-interface CreateUserRequest {
-  name: string;
-  email: string;
-  externalId: string;
-  externalSource: string;
-}
+interface CreateUserRequest extends UserInterface {}
 
 export default class CreateUser {
   public static async execute(userData: CreateUserRequest): Promise<LucidRow> {

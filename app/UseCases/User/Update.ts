@@ -1,12 +1,8 @@
 import { LucidRow } from '@ioc:Adonis/Lucid/Orm';
+import UserInterface from 'App/Interfaces/User';
 import UserService from 'App/Services/UserService';
 
-interface UpdateUserRequest {
-  name: string;
-  email: string;
-  externalId: string;
-  externalSource: string;
-}
+interface UpdateUserRequest extends UserInterface {}
 
 export default class UpdateUser {
   public static async execute(userData: UpdateUserRequest): Promise<LucidRow> {
