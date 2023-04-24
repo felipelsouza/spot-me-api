@@ -12,14 +12,21 @@ export default class extends BaseSchema {
       table.string('external_source', 120).notNullable();
 
       table.string('name', 255).notNullable();
-      table.string('email', 255).notNullable().unique();
+      table.string('email', 255).notNullable();
+      table.string('avatar');
 
       MigrationsHelper.createAuditoryFields(table);
 
       table.index(['external_id', 'external_source'], 'idx_users_external_id_external_source');
+      table.index(['external_id', 'external_source', 'email'], 'idx_users_external_id_external_source_email');
 
       table.unique(['external_id', 'external_source'], {
         indexName: 'un_users_external_id_external_source',
+        predicate: this.knex().whereRaw('is_deleted = false')
+      });
+
+      table.unique(['external_id', 'external_source', 'email'], {
+        indexName: 'un_users_external_id_external_source_email',
         predicate: this.knex().whereRaw('is_deleted = false')
       });
     });

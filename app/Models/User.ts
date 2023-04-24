@@ -18,6 +18,9 @@ export default class User extends AppBaseModel {
   @column()
   public name: string;
 
+  @column()
+  public avatar: string;
+
   @column({ serializeAs: null })
   public isDeleted: boolean = false;
 
