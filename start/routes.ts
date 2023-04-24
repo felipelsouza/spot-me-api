@@ -19,8 +19,19 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route';
+import Env from '@ioc:Adonis/Core/Env';
+
+const applicationHost = Env.get('DOMAIN');
 
 Route.group(() => {
   require('./routes/health-check');
   require('./routes/user');
-}).prefix('/api/v1');
+})
+  .prefix('/api/v1')
+  .domain(applicationHost);
+
+Route.group(() => {
+  require('./routes/auth-providers');
+})
+  .prefix('/test')
+  .domain('localhost');
