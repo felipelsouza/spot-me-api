@@ -1,24 +1,13 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
-import CreateUser from 'App/UseCases/User/Create';
-import UpdateUser from 'App/UseCases/User/Update';
-import CreateUserValidator from 'App/Validators/CreateUserValidator';
-import UpdateUserValidator from 'App/Validators/UpdateUserValidator';
+import AuthenticateAndUpsertUser from 'App/UseCases/User/AuthenticateAndUpsert';
+import SocialUser from 'App/Validators/SocialUserValidator';
 
 export default class UsersController {
-  public async store({ request, response }: HttpContextContract) {
-    const userPayload = await request.validate(CreateUserValidator);
+  public async auth({ request, response }: HttpContextContract): Promise<void> {
+    const socialUser = await request.validate(SocialUser);
 
-    const createdUser = await CreateUser.execute(userPayload);
+    const user = await AuthenticateAndUpsertUser.execute(socialUser);
 
-    return response.created(createdUser);
-  }
-
-  public async update({ request, response }: HttpContextContract) {
-    const userPayload = await request.validate(UpdateUserValidator);
-    const externalId = request.param('externalId');
-
-    const updatedUser = await UpdateUser.execute({ ...userPayload, externalId });
-
-    return response.ok(updatedUser);
+    return response.ok(user);
   }
 }
