@@ -1,0 +1,6 @@
+{
+  "accessDenied": "Access denied",
+  "stateMisMatch": "Expired request. Try again",
+  "hasError": "Unable to authenticate, please try again",
+  "driverNotFound": "Unable to authenticate to the given provider"
+}

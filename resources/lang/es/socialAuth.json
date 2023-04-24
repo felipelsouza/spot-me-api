@@ -1,0 +1,6 @@
+{
+  "accessDenied": "Acceso denegado",
+  "stateMisMatch": "Solicitud caducada. Inténtalo de nuevo",
+  "hasError": "No se puede autenticar, inténtalo de nuevo",
+  "driverNotFound": "No se puede autenticar con el proveedor dado"
+}

@@ -1,0 +1,6 @@
+{
+  "accessDenied": "Acesso negado",
+  "stateMisMatch": "Requisição expirada. Tente novamente",
+  "hasError": "Não foi possível realizar a autenticação, tente novemente",
+  "driverNotFound": "Não é possível realizar a autenticação no provedor informado"
+}
