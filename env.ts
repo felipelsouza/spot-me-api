@@ -16,6 +16,7 @@ import Env from '@ioc:Adonis/Core/Env';
 
 export default Env.rules({
   HOST: Env.schema.string({ format: 'host' }),
+  DOMAIN: Env.schema.string(),
   PORT: Env.schema.number(),
   APP_KEY: Env.schema.string(),
   APP_NAME: Env.schema.string(),
@@ -27,5 +28,9 @@ export default Env.rules({
   DB_PORT: Env.schema.number(),
   DB_USER: Env.schema.string(),
   DB_PASSWORD: Env.schema.string(),
-  DB_NAME: Env.schema.string()
+  DB_NAME: Env.schema.string(),
+
+  SPOTIFY_CLIENT_ID: Env.schema.string(),
+  SPOTIFY_CLIENT_SECRET: Env.schema.string(),
+  SPOTIFY_CALLBACK_URL: Env.schema.string()
 });

@@ -11,6 +11,7 @@
     "test:unit:watch": "node ace test unit --watch",
     "test:functional": "node ace test functional",
     "test:functional:watch": "node ace test functional --watch",
+    "test:debug": "node ace test --debug --watch",
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write ."
   },
@@ -51,6 +52,7 @@
     "@japa/runner": "^2.5.1",
     "@types/knex": "^0.16.1",
     "@types/proxy-addr": "^2.0.0",
+    "@types/sinon": "^10.0.14",
     "@types/source-map-support": "^0.5.6",
     "adonis-preset-ts": "^2.1.0",
     "eslint": "^8.36.0",
@@ -64,6 +66,7 @@
     "youch-terminal": "^2.2.0"
   },
   "dependencies": {
+    "@adonisjs/ally": "^4.1.5",
     "@adonisjs/core": "^5.9.0",
     "@adonisjs/i18n": "^1.5.6",
     "@adonisjs/lucid": "^18.3.0",
@@ -72,6 +75,7 @@
     "pg": "^8.10.0",
     "proxy-addr": "^2.0.7",
     "reflect-metadata": "^0.1.13",
+    "sinon": "^15.0.4",
     "source-map-support": "^0.5.21"
   }
 }
