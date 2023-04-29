@@ -1,9 +1,9 @@
-import { LucidRow } from '@ioc:Adonis/Lucid/Orm';
 import UserInterface from 'App/Interfaces/User';
+import User from 'App/Models/User';
 import UserService from 'App/Services/UserService';
 
-export default class AuthenticateAndUpsertUser {
-  public static async execute(userData: UserInterface): Promise<LucidRow> {
+export default class UpsertUser {
+  public static async execute(userData: UserInterface): Promise<User> {
     const userService = new UserService();
 
     let user = await userService.findByExternalId(userData.externalId, userData.externalSource);
@@ -18,6 +18,6 @@ export default class AuthenticateAndUpsertUser {
       user = await userService.create(userData);
     }
 
-    return user;
+    return <User>user;
   }
 }

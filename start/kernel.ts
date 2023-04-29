@@ -41,4 +41,7 @@ Server.middleware.register([
 | Route.get('dashboard', 'UserController.dashboard').middleware('auth')
 |
 */
-Server.middleware.registerNamed({ socialAuth: () => import('App/Middleware/SocialAuthentication') });
+Server.middleware.registerNamed({
+  socialAuth: () => import('App/Middleware/SocialAuthentication'),
+  auth: () => import('App/Middleware/Auth')
+});

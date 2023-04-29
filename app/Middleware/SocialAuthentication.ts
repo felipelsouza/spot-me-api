@@ -26,11 +26,14 @@ export default class SocialAuthentication {
     const user = await authenticationDriver.user();
 
     request.updateBody({
-      externalSource,
-      externalId: user.id,
-      name: user.name,
-      email: user.email,
-      avatar: user.avatarUrl
+      socialUser: {
+        externalSource,
+        externalId: user.id,
+        name: user.name,
+        email: user.email,
+        avatar: user.avatarUrl
+      },
+      socialToken: user.token
     });
 
     await next();

@@ -24,11 +24,19 @@ export default class SocialUserValidator {
    *    ```
    */
   public schema = schema.create({
-    externalId: schema.string({}, [rules.required()]),
-    externalSource: schema.string({}, [rules.required()]),
-    email: schema.string({}, [rules.email(), rules.required()]),
-    name: schema.string({}, [rules.required()]),
-    avatar: schema.string({}, [rules.url()])
+    socialUser: schema.object().members({
+      externalId: schema.string({}, [rules.required()]),
+      externalSource: schema.string({}, [rules.required()]),
+      email: schema.string({}, [rules.email(), rules.required()]),
+      name: schema.string({}, [rules.required()]),
+      avatar: schema.string({}, [rules.url()])
+    }),
+    socialToken: schema.object().members({
+      token: schema.string({}, [rules.required()]),
+      refreshToken: schema.string({}, [rules.required()]),
+      expiresIn: schema.number([rules.required()]),
+      tokenType: schema.string({}, [rules.required()])
+    })
   });
 
   /**
