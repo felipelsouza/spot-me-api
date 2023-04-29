@@ -17,7 +17,7 @@ test.group('Upsert User', async (group) => {
     const response = await client.get(`api/v1/external-source/${user.externalSource}/users/auth`);
 
     response.assertStatus(200);
-    assert.onlyProperties(response.body(), returnBodyDefaultItems);
+    assert.onlyProperties(response.body().user, returnBodyDefaultItems);
 
     socialAuthenticationMock.restore();
   });
@@ -32,10 +32,10 @@ test.group('Upsert User', async (group) => {
     const response = await client.get(`api/v1/external-source/${userToUpdate.externalSource}/users/auth`);
 
     response.assertStatus(200);
-    assert.onlyProperties(response.body(), returnBodyDefaultItems);
-    assert.property(response.body(), 'email', userToUpdate.email);
-    assert.property(response.body(), 'name', userToUpdate.name);
-    assert.property(response.body(), 'avatar', userToUpdate.avatar);
+    assert.onlyProperties(response.body().user, returnBodyDefaultItems);
+    assert.property(response.body().user, 'email', userToUpdate.email);
+    assert.property(response.body().user, 'name', userToUpdate.name);
+    assert.property(response.body().user, 'avatar', userToUpdate.avatar);
 
     socialAuthenticationMock.restore();
   });
